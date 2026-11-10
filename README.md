@@ -4,12 +4,12 @@
 
 ## 실행
 
-`index.html`을 브라우저로 열면 바로 실행됩니다. 설치할 것은 없습니다.
-인터넷이 연결되어 있지 않으면 글꼴만 기본 글꼴로 바뀝니다.
+`index.html`을 브라우저로 열면 바로 실행됩니다. 설치할 것은 없고, 글꼴(`fonts/`)도 함께 들어 있어 인터넷 없이도 그대로 보입니다.
 
 ## 구성
 
 - `index.html` — 게임 전체 (홈 화면, 게임 규칙 튜토리얼, 교사용 도움말, 점수표 받기)
+- `fonts/neodgm.woff2` — Neo둥근모 글꼴 (SIL Open Font License 1.1, https://neodgm.dalgona.dev)
 - `sheets/` — 인쇄용 점수표 PDF (A4)
   - `score-word-20.pdf` 가능성을 글로 쓰기 · 20문제 (A4 반으로 잘라 2명)
   - `score-word-40.pdf` 가능성을 글로 쓰기 · 40문제 (A4 1장)

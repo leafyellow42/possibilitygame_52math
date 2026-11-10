@@ -4,18 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>가능성 베팅 게임</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 <style>
+  @font-face{font-family:'NeoDGM';src:url('fonts/neodgm.woff2') format('woff2');font-display:block}
   :root{--bg:#f4f1ea;--ink:#111111;--red:#d62b1f;--green:#17773f;--paper:#ffffff;--muted:#5a5650;--dim:#e2ded4;--dimline:#bdb7aa;--table:#e9e5dc}
-  *{box-sizing:border-box}
+  *{box-sizing:border-box;font-synthesis:none}
   html,body{margin:0;height:100%;background:#e9e5dc;overflow:hidden}
-  body{font-family:'Noto Sans KR',sans-serif;font-weight:500;color:var(--ink)}
+  body{font-family:'NeoDGM',monospace;font-weight:400;color:var(--ink);-webkit-font-smoothing:none}
   #viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
   #stage{width:1280px;height:720px;flex:none;background:var(--bg);padding:26px 48px 24px;display:flex;flex-direction:column;gap:16px;transform-origin:center center;position:relative}
-  .hd{font-family:'Noto Sans KR',sans-serif;font-weight:700}
-  .px{font-family:'Silkscreen',monospace;font-weight:700}
+  .hd{font-family:'NeoDGM',monospace;font-weight:700}
+  .px{font-family:'NeoDGM',monospace;font-weight:700}
   .box{background:var(--paper);border:6px solid var(--ink);box-shadow:8px 8px 0 var(--ink);position:relative}
   button{font:inherit}
 
@@ -29,7 +27,7 @@
   .icons .ic{width:44px;height:44px;display:block;animation:bob 1.2s steps(2) infinite}
   .icons .ic:nth-child(2){animation-delay:.2s}.icons .ic:nth-child(3){animation-delay:.4s}.icons .ic:nth-child(4){animation-delay:.6s}.icons .ic:nth-child(5){animation-delay:.8s}
   .icons .ic svg{display:block;width:44px;height:44px}
-  .icons .card7{width:32px;height:44px;border:4px solid var(--ink);background:var(--paper);font-family:'Silkscreen',monospace;font-weight:700;font-size:22px;display:flex;align-items:center;justify-content:center}
+  .icons .card7{width:32px;height:44px;border:4px solid var(--ink);background:var(--paper);font-family:'NeoDGM',monospace;font-weight:700;font-size:22px;display:flex;align-items:center;justify-content:center}
   @keyframes bob{0%{transform:translateY(0)}100%{transform:translateY(-6px)}}
   @media (prefers-reduced-motion: reduce){.icons .ic{animation:none}}
   .home .sub{font-size:28px;color:var(--muted)}
@@ -40,9 +38,9 @@
   .stepbtn[disabled]{opacity:.35;cursor:default;transform:none}
   .num{width:210px;height:96px;display:flex;align-items:center;justify-content:center;font-size:92px;background:var(--paper);border:6px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
   .presets{display:flex;gap:14px}
-  .chip{font-family:'Silkscreen',monospace;font-weight:700;font-size:24px;width:76px;height:50px;border:5px solid var(--ink);background:var(--paper);cursor:pointer;color:var(--ink)}
+  .chip{font-family:'NeoDGM',monospace;font-weight:700;font-size:24px;width:76px;height:50px;border:5px solid var(--ink);background:var(--paper);cursor:pointer;color:var(--ink)}
   .chip.on{background:var(--ink);color:var(--paper)}
-  .playbtn{margin-top:6px;font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:42px;height:82px;padding:0 64px;border:6px solid var(--ink);background:var(--red);color:var(--paper);box-shadow:8px 8px 0 var(--ink);cursor:pointer;display:flex;align-items:center;gap:22px}
+  .playbtn{margin-top:6px;font-family:'NeoDGM',monospace;font-weight:700;font-size:42px;height:82px;padding:0 64px;border:6px solid var(--ink);background:var(--red);color:var(--paper);box-shadow:8px 8px 0 var(--ink);cursor:pointer;display:flex;align-items:center;gap:22px}
   .playbtn:active{transform:translate(5px,5px);box-shadow:3px 3px 0 var(--ink)}
   .note{font-size:22px;color:var(--muted)}
 
@@ -81,8 +79,8 @@
   .right{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:14px}
   .opts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;flex:none}
   .opt{height:110px;border:6px solid var(--ink);background:var(--paper);box-shadow:5px 5px 0 var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--ink);padding:0;position:relative}
-  .opt .n{font-family:'Silkscreen',monospace;font-weight:700;font-size:18px}
-  .opt .l{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:29px;line-height:1.12;text-align:center}
+  .opt .n{font-family:'NeoDGM',monospace;font-weight:700;font-size:18px}
+  .opt .l{font-family:'NeoDGM',monospace;font-weight:700;font-size:29px;line-height:1.12;text-align:center}
   .opt:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
   .opt.wrong{background:var(--dim);color:var(--muted);border-color:var(--dimline);box-shadow:none;transform:translate(5px,5px);cursor:default}
   .opt.wrong .x{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
@@ -104,7 +102,7 @@
   .card .mk{font-size:84px;line-height:1}
   .card .ds{font-size:28px;line-height:1.2;text-align:center}
   .card .pt{font-size:52px;line-height:1}
-  .card .pt small{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:26px;margin-left:4px}
+  .card .pt small{font-family:'NeoDGM',monospace;font-weight:700;font-size:26px;margin-left:4px}
   .card.win{background:var(--green);color:var(--paper);animation:pop .35s steps(3)}
   .card.lose{opacity:.35;box-shadow:none;transform:translate(8px,8px)}
   .card .badge{position:absolute;top:-22px;left:20px;background:var(--paper);color:var(--green);border:5px solid var(--green);font-size:22px;padding:2px 12px}
@@ -112,7 +110,7 @@
 
   .foot{flex:none;display:flex;justify-content:space-between;align-items:center;height:62px}
   .foot .grp{display:flex;gap:14px;align-items:center}
-  .btn{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:28px;padding:0 26px;height:58px;border:6px solid var(--ink);background:var(--paper);color:var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer;display:flex;align-items:center;gap:10px}
+  .btn{font-family:'NeoDGM',monospace;font-weight:700;font-size:28px;padding:0 26px;height:58px;border:6px solid var(--ink);background:var(--paper);color:var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer;display:flex;align-items:center;gap:10px}
   .btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
   .btn.primary{background:var(--red);color:var(--paper)}
   .btn[disabled]{opacity:.4;cursor:default;transform:none}
@@ -158,7 +156,7 @@
   .kcard{position:absolute;left:0;top:0;width:50px;height:70px;perspective:500px}
   .k-in{width:100%;height:100%;position:relative;transform-style:preserve-3d}
   .k-f,.k-b{position:absolute;inset:0;border:4px solid var(--ink);backface-visibility:hidden;-webkit-backface-visibility:hidden}
-  .k-f{background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'Silkscreen',monospace;font-weight:700;font-size:26px}
+  .k-f{background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'NeoDGM',monospace;font-weight:700;font-size:26px}
   .k-b{transform:rotateY(180deg);background-color:var(--ink);background-image:repeating-linear-gradient(45deg,#d62b1f 0 4px,transparent 4px 10px)}
   .k-b::after{content:'';position:absolute;inset:5px;border:3px solid var(--paper)}
 
@@ -173,6 +171,34 @@
   .tcols h3{margin:6px 0 4px;font-size:26px}
   .tcols ul{font-size:20px !important;line-height:1.5 !important}
   .btn.rules{background:var(--ink);color:var(--paper)}
+  /* 홈 B안 */
+  .home2{flex:1;display:flex;margin:-26px -48px -24px}
+  .home2 .hl{flex:1 1 56%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:28px;padding:0 64px;border-right:8px solid var(--ink)}
+  .home2 .hr{flex:1 1 44%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;background:#ebe7de;padding:0 40px}
+  .home2 .title{margin:0;font-size:96px;line-height:1.1;color:var(--ink);text-shadow:5px 5px 0 #d8d3c7}
+  .home2 .kicker{font-size:32px}
+  .home2 .lbl{font-size:32px;color:var(--muted);margin:0}
+  .home2 .icons .ic{width:48px;height:48px}
+  .home2 .icons .ic svg{width:48px;height:48px}
+  .home2 .playbtn{width:432px;justify-content:center;font-size:48px;margin:4px 0 0}
+  .tools2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:432px}
+  .tools2 .btn{justify-content:center}
+  .tools2 .wide{grid-column:span 2}
+  /* 게임 C안: 세로 선택지 → 정답 띠 */
+  .vopts{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:10px}
+  .vopts .opt{flex:1 1 0;height:auto;min-height:0;flex-direction:row;justify-content:flex-start;gap:22px;padding:0 26px}
+  .vopts .opt .n{font-size:32px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--paper)}
+  .vopts .opt .l{font-size:32px;line-height:1}
+  .vopts .opt.wrong .n{background:var(--dimline)}
+  .vopts .opt.wrong .x{inset:0 26px 0 auto;justify-content:flex-end}
+  .vopts .opt.wrong .x svg{width:44px;height:44px}
+  .pickstrip{flex:none;height:72px;display:flex;align-items:center;gap:24px;background:var(--green);color:var(--paper);border:6px solid var(--ink);padding:0 24px}
+  .pickstrip .hd{font-size:32px}
+  .pickstrip .rs{font-size:24px}
+  .oxarea .card .mk{font-size:112px}
+  .oxarea .card .pt{font-size:64px}
+  .oxarea .card .ds{font-size:32px}
+  .oxarea .noscore .big{font-size:48px}
   .sbox{width:1060px !important;padding:26px 40px !important;gap:16px !important}
   .srow{display:flex;flex-direction:column;gap:10px}
   .shead{display:flex;align-items:baseline;gap:16px}
@@ -207,7 +233,7 @@
   .ticons{display:flex;gap:30px;align-items:center}
   .ticons span{width:64px;height:64px;display:block}
   .ticons svg{display:block;width:64px;height:64px}
-  .ticons .card7{width:46px;height:64px;border:4px solid var(--ink);background:var(--paper);font-family:'Silkscreen',monospace;font-weight:700;font-size:28px;display:flex;align-items:center;justify-content:center}
+  .ticons .card7{width:46px;height:64px;border:4px solid var(--ink);background:var(--paper);font-family:'NeoDGM',monospace;font-weight:700;font-size:28px;display:flex;align-items:center;justify-content:center}
   .tscale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;width:960px}
   .tscale div{height:96px;border:6px solid var(--ink);background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:29px;line-height:1.15;text-align:center}
   .tscale div.on{background:var(--green);color:var(--paper)}
@@ -813,27 +839,31 @@
   function renderHome(){
     st.screen='home';
     var presets=[5,10,20,30,40].map(function(v){ return '<button class="chip'+(v===st.N?' on':'')+'" data-act="preset" data-v="'+v+'">'+v+'</button>'; }).join('');
-    stage.innerHTML='<section class="home">'+
-      '<div class="kicker hd">5학년 2학기 수학</div>'+
-      '<h1 class="hd title">가능성 베팅 게임</h1>'+
-      '<div class="icons" aria-hidden="true">'+
-        '<span class="ic">'+dieFace(5)+'</span>'+
-        '<span class="ic">'+coinFace('그림')+'</span>'+
-        '<span class="ic">'+miniWheel()+'</span>'+
-        '<span class="ic">'+disc(10,'#111111','#111111')+'</span>'+
-        '<span class="ic card7">7</span>'+
+    stage.innerHTML='<section class="home2">'+
+      '<div class="hl">'+
+        '<div class="kicker hd">5학년 2학기 수학</div>'+
+        '<h1 class="hd title">가능성<br>베팅 게임</h1>'+
+        '<div class="icons" aria-hidden="true">'+
+          '<span class="ic">'+dieFace(5)+'</span>'+
+          '<span class="ic">'+coinFace('그림')+'</span>'+
+          '<span class="ic">'+miniWheel()+'</span>'+
+          '<span class="ic">'+disc(10,'#111111','#111111')+'</span>'+
+          '<span class="ic card7">7</span>'+
+        '</div>'+
       '</div>'+
-      '<div class="lbl hd">문제 수</div>'+
-      '<div class="setbox"><button class="stepbtn" data-act="dec" aria-label="문제 수 줄이기"'+(st.N<=MIN_Q?' disabled':'')+'>'+MINUS+'</button>'+
-      '<div class="num px" aria-live="polite">'+st.N+'</div>'+
-      '<button class="stepbtn" data-act="inc" aria-label="문제 수 늘리기"'+(st.N>=MAX_Q?' disabled':'')+'>'+PLUS+'</button></div>'+
-      '<div class="presets">'+presets+'</div>'+
-      '<button class="playbtn" data-act="start">'+PLAY_ICON+'시작</button>'+
-      '<div class="tools"><button class="btn small rules" data-act="tutorial">게임 규칙</button>'+
-      '<button class="btn small" data-act="sheets">점수표 받기</button>'+
-      '<button class="btn small" data-act="teacher">교사용 도움말</button>'+
-      '<button class="btn small" data-act="full">전체 화면</button>'+
-      '<button class="btn small" data-act="sound">'+(SFX.isOn()?'소리 켜짐':'소리 꺼짐')+'</button></div>'+
+      '<div class="hr">'+
+        '<div class="lbl hd">문제 수</div>'+
+        '<div class="setbox"><button class="stepbtn" data-act="dec" aria-label="문제 수 줄이기"'+(st.N<=MIN_Q?' disabled':'')+'>'+MINUS+'</button>'+
+        '<div class="num px" aria-live="polite">'+st.N+'</div>'+
+        '<button class="stepbtn" data-act="inc" aria-label="문제 수 늘리기"'+(st.N>=MAX_Q?' disabled':'')+'>'+PLUS+'</button></div>'+
+        '<div class="presets">'+presets+'</div>'+
+        '<button class="playbtn" data-act="start">'+PLAY_ICON+'시작</button>'+
+        '<div class="tools2"><button class="btn small rules" data-act="tutorial">게임 규칙</button>'+
+        '<button class="btn small" data-act="sheets">점수표 받기</button>'+
+        '<button class="btn small" data-act="teacher">교사용 도움말</button>'+
+        '<button class="btn small" data-act="full">전체 화면</button>'+
+        '<button class="btn small wide" data-act="sound">'+(SFX.isOn()?'소리 켜짐':'소리 꺼짐')+'</button></div>'+
+      '</div>'+
       '</section>'+modalHtml();
   }
   function refresh(){ if (st.screen==='home') renderHome(); else if (st.screen==='game') updateUI(); }
@@ -878,7 +908,7 @@
       '<section class="box stmt"><div class="count px"><b>'+String(st.idx).padStart(2,'0')+'</b>/'+String(st.N).padStart(2,'0')+'</div><h1 class="hd"><span>'+q.pre+'</span><br>'+q.text+'.</h1></section>'+
       '<div class="body">'+
         '<section class="box toolbox" aria-label="'+m.title+'"><div class="host" id="host"></div><div class="cap hd" id="cap"></div></section>'+
-        '<div class="right"><div class="opts" id="opts"></div><div id="reason"></div><div class="oxarea" id="ox"></div></div>'+
+        '<div class="right"><div class="vopts" id="opts"></div><div id="reason"></div><div class="oxarea" id="ox"></div></div>'+
       '</div>'+
       '<footer class="foot" id="foot"></footer><div id="helpHost"></div>';
     st.tool = VIEWS[m.tool](document.getElementById('host'), m);
@@ -888,18 +918,22 @@
   function updateUI(){
     var q=st.q, m=q.made, ph=st.phase, revealed=ph!=='choose';
 
-    document.getElementById('opts').innerHTML=LEVELS.map(function(l,i){
-      var cls='opt', extra='';
-      if (revealed) cls+=(i===q.level)?' right':' fade';
-      else if (st.wrong.indexOf(i)>=0){ cls+=' wrong'; extra='<span class="x">'+XMARK+'</span>'; }
-      var dis=(revealed||st.wrong.indexOf(i)>=0)?' disabled':'';
-      return '<button class="'+cls+'" data-act="pick" data-i="'+i+'"'+dis+' aria-label="'+(i+1)+'번 '+LEVEL_PLAIN[i]+'"><span class="n">'+(i+1)+'</span><span class="l">'+l+'</span>'+extra+'</button>';
-    }).join('');
-
-    var reason = revealed ? '<div class="reason ok hd">'+m.reason(q.f)+'</div>' : '<div class="reason"></div>';
-    document.getElementById('reason').innerHTML=reason;
+    var optsEl=document.getElementById('opts');
+    if (!revealed){
+      optsEl.className='vopts';
+      optsEl.innerHTML=LEVEL_PLAIN.map(function(l,i){
+        var cls='opt', extra='', wrong=st.wrong.indexOf(i)>=0;
+        if (wrong){ cls+=' wrong'; extra='<span class="x">'+XMARK+'</span>'; }
+        return '<button class="'+cls+'" data-act="pick" data-i="'+i+'"'+(wrong?' disabled':'')+' aria-label="'+(i+1)+'번 '+l+'"><span class="n">'+(i+1)+'</span><span class="l">'+l+'</span>'+extra+'</button>';
+      }).join('');
+    } else {
+      optsEl.className='pickstrip';
+      optsEl.innerHTML='<span class="hd">정답: '+LEVEL_PLAIN[q.level]+'</span><span class="rs">'+m.reason(q.f)+'</span>';
+    }
+    document.getElementById('reason').innerHTML='';
 
     var ox;
+    document.getElementById('ox').style.display = ph==='choose' ? 'none' : '';
     if (ph==='choose') ox='';
     else if (ph==='noscore') ox='<div class="noscore"><div class="big hd">배점 없음</div></div>';
     else {
