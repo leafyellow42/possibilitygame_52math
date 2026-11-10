@@ -6,15 +6,15 @@
 <title>가능성 베팅 게임</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#f4f1ea;--ink:#111111;--red:#d62b1f;--green:#17773f;--paper:#ffffff;--muted:#5a5650;--dim:#e2ded4;--dimline:#bdb7aa;--table:#e9e5dc}
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;background:#e9e5dc;overflow:hidden}
-  body{font-family:'Gothic A1',sans-serif;font-weight:700;color:var(--ink)}
+  body{font-family:'Noto Sans KR',sans-serif;font-weight:500;color:var(--ink)}
   #viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
   #stage{width:1280px;height:720px;flex:none;background:var(--bg);padding:26px 48px 24px;display:flex;flex-direction:column;gap:16px;transform-origin:center center;position:relative}
-  .hd{font-family:'Black Han Sans',sans-serif;font-weight:400}
+  .hd{font-family:'Noto Sans KR',sans-serif;font-weight:700}
   .px{font-family:'Silkscreen',monospace;font-weight:700}
   .box{background:var(--paper);border:6px solid var(--ink);box-shadow:8px 8px 0 var(--ink);position:relative}
   button{font:inherit}
@@ -42,7 +42,7 @@
   .presets{display:flex;gap:14px}
   .chip{font-family:'Silkscreen',monospace;font-weight:700;font-size:24px;width:76px;height:50px;border:5px solid var(--ink);background:var(--paper);cursor:pointer;color:var(--ink)}
   .chip.on{background:var(--ink);color:var(--paper)}
-  .playbtn{margin-top:6px;font-family:'Black Han Sans',sans-serif;font-size:42px;height:82px;padding:0 64px;border:6px solid var(--ink);background:var(--red);color:var(--paper);box-shadow:8px 8px 0 var(--ink);cursor:pointer;display:flex;align-items:center;gap:22px}
+  .playbtn{margin-top:6px;font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:42px;height:82px;padding:0 64px;border:6px solid var(--ink);background:var(--red);color:var(--paper);box-shadow:8px 8px 0 var(--ink);cursor:pointer;display:flex;align-items:center;gap:22px}
   .playbtn:active{transform:translate(5px,5px);box-shadow:3px 3px 0 var(--ink)}
   .note{font-size:22px;color:var(--muted)}
 
@@ -82,7 +82,7 @@
   .opts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;flex:none}
   .opt{height:110px;border:6px solid var(--ink);background:var(--paper);box-shadow:5px 5px 0 var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--ink);padding:0;position:relative}
   .opt .n{font-family:'Silkscreen',monospace;font-weight:700;font-size:18px}
-  .opt .l{font-family:'Black Han Sans',sans-serif;font-size:29px;line-height:1.12;text-align:center}
+  .opt .l{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:29px;line-height:1.12;text-align:center}
   .opt:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
   .opt.wrong{background:var(--dim);color:var(--muted);border-color:var(--dimline);box-shadow:none;transform:translate(5px,5px);cursor:default}
   .opt.wrong .x{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
@@ -104,7 +104,7 @@
   .card .mk{font-size:84px;line-height:1}
   .card .ds{font-size:28px;line-height:1.2;text-align:center}
   .card .pt{font-size:52px;line-height:1}
-  .card .pt small{font-family:'Black Han Sans',sans-serif;font-size:26px;margin-left:4px}
+  .card .pt small{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:26px;margin-left:4px}
   .card.win{background:var(--green);color:var(--paper);animation:pop .35s steps(3)}
   .card.lose{opacity:.35;box-shadow:none;transform:translate(8px,8px)}
   .card .badge{position:absolute;top:-22px;left:20px;background:var(--paper);color:var(--green);border:5px solid var(--green);font-size:22px;padding:2px 12px}
@@ -112,7 +112,7 @@
 
   .foot{flex:none;display:flex;justify-content:space-between;align-items:center;height:62px}
   .foot .grp{display:flex;gap:14px;align-items:center}
-  .btn{font-family:'Black Han Sans',sans-serif;font-size:28px;padding:0 26px;height:58px;border:6px solid var(--ink);background:var(--paper);color:var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer;display:flex;align-items:center;gap:10px}
+  .btn{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:28px;padding:0 26px;height:58px;border:6px solid var(--ink);background:var(--paper);color:var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer;display:flex;align-items:center;gap:10px}
   .btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
   .btn.primary{background:var(--red);color:var(--paper)}
   .btn[disabled]{opacity:.4;cursor:default;transform:none}
