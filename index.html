@@ -267,6 +267,7 @@
   function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
   function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
   function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+  function weighted(ws){ var t=ws.reduce(function(a,b){return a+b;},0), r=Math.random()*t; for (var i=0;i<ws.length;i++){ r-=ws[i]; if (r<0) return i; } return ws.length-1; }
   function wait(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
   function anim(el, frames, opts){
     var a = el.animate(frames, Object.assign({fill:'forwards'}, opts));
@@ -963,7 +964,8 @@
     var primary='';
     if (ph==='bet') primary='<button class="btn primary" data-act="run" data-primary>결과 확인하기</button>';
     else if (ph==='rolling') primary='<button class="btn primary" disabled>확인 중...</button>';
-    else if (ph==='noscore'||ph==='result') primary='<button class="btn primary" data-act="next" data-primary>'+nextLabel+'</button>';
+    else if (ph==='noscore'||ph==='result') primary=(last && st.N<MAX_Q ? '<button class="btn" data-act="more">한 문제 더 풀기</button>' : '')+
+      '<button class="btn primary" data-act="next" data-primary>'+nextLabel+'</button>';
     document.getElementById('foot').innerHTML='<div class="grp">'+
       '<button class="btn small quit'+(st.quitArm?' armed':'')+'" data-act="quit"'+(ph==='rolling'?' disabled':'')+'>'+(st.quitArm?'한 번 더 누르면 끝':'여기서 끝내기')+'</button>'+
       ((ph==='choose'||ph==='bet'||ph==='noscore')?'<button class="btn small" data-act="skip">다른 문장</button>':'')+
@@ -1136,6 +1138,16 @@
       else { SFX.wrong(); st.wrong.push(i); updateUI(); var b=stage.querySelector('.opt[data-i="'+i+'"]'); if (b) b.classList.add('shake'); }
     }
     else if (name==='run'){ if (st.phase==='bet') runSim(); }
+    else if (name==='more'){
+      if ((st.phase==='noscore'||st.phase==='result') && st.idx>=st.N && st.N<MAX_Q){
+        // 한 문제를 덧붙인다. 확실하지 않은 문장 70% 이상 규칙을 지키도록 단계를 고른다
+        st.N++;
+        var edge=st.levels.filter(function(v){ return v===0||v===4; }).length;
+        var w=[10,30,20,30,10]; if (edge+1>Math.floor(st.N*0.3)){ w[0]=0; w[4]=0; }
+        st.levels.push(weighted(w));
+        st.solved++; SFX.next(); nextQuestion();
+      }
+    }
     else if (name==='next'){ if (st.phase==='noscore'||st.phase==='result'){ st.solved++; if (st.idx<st.N) SFX.next(); nextQuestion(); } }
     else if (name==='skip'){ if (st.phase!=='rolling'&&st.phase!=='result'){ SFX.blip(); loadQuestion(); } }
     else if (name==='quit'){
